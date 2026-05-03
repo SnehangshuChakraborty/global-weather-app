@@ -1,0 +1,59 @@
+/* Add this to your index.css or App.css */
+
+.bg-sunny { 
+  background: linear-gradient(135deg, #fceabb 0%, #f8b500 100%) !important; 
+}
+
+.bg-cloudy { 
+  background: linear-gradient(135deg, #e0e0e0 0%, #bdbdbd 100%) !important; 
+}
+
+.bg-rainy { 
+  background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%) !important; 
+}
+
+.bg-haze { 
+  background: linear-gradient(135deg, #757f9a 0%, #d7dde8 100%) !important; 
+}
+
+.bg-stormy { 
+  background: linear-gradient(135deg, #485563 0%, #29323c 100%) !important; 
+}
+
+/* This makes the card edges disappear so the gradient is the hero */
+.card {
+  border: none !important;
+}
+
+input.form-control {
+  border: 1px solid #dee2e6;
+  border-radius: 12px; /* Rounds the corners like your cards */
+  padding: 12px 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Soft shadow */
+  transition: all 0.2s ease;
+}
+
+input.form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15); /* Softer blue glow */
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  /* A soft, multi-colored mesh gradient */
+  background-color: #f8f9fa;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(13, 110, 253, 0.1) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(102, 16, 242, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(255, 193, 7, 0.05) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(32, 201, 151, 0.08) 0px, transparent 50%);
+  background-attachment: fixed;
+}
+
+/* Optional: Add a subtle animation to the background */
+@keyframes meshGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}

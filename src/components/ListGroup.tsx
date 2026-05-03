@@ -30,7 +30,7 @@ function ListGroup() {
       <div className="card shadow-sm">
         {/* Card Header */}
         <div className="card-header bg-primary text-white py-3">
-          <h3 className="mb-0 h5">City Registry</h3>
+          <h3 className="mb-0 h5">Global Weather Dashboard</h3>
         </div>
         {/* Card Body */}
         <div className="card-body">
