@@ -18,6 +18,7 @@ export const callOpenWeatherMapApiHandler = async (city: string, country: string
       country: data.sys.country,
       temp: data.main.temp,
       condition: data.weather[0].main,
+      icon: data.weather[0].icon,
       localTime: new Date().toLocaleTimeString(),
       humidity: data.main.humidity
     };

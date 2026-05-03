@@ -1,6 +1,8 @@
 import { WeatherData } from "./WeatherData";
 
-const WeatherCard = ({ city, data, onDelete }: { city: string; data: WeatherData; onDelete: () => void }) => (
+const WeatherCard = ({ city, data, onDelete }: { city: string; data: WeatherData; onDelete: () => void }) => {
+    const iconUrl = `https://openweathermap.org/img/wn/${data.icon}@2x.png`;
+  return (
   <div className="col-12 col-md-6 col-lg-4 mb-4 position-relative">
     <button 
       onClick={onDelete}
@@ -13,14 +15,17 @@ const WeatherCard = ({ city, data, onDelete }: { city: string; data: WeatherData
         <h5 className="fw-bold">{city}</h5>
         <p className="text-muted small mb-1">{data.country}</p>
         {/* Placeholder for weather icons from the mockup */}
-        <div className="py-2 text-primary display-6">
-           {data.condition === 'Sunny' ? '☀️' : '☁️'}
+        <div className="py-2">
+            <img src={iconUrl} alt={data.condition} style={{ width: "50px", height: "50px" }} />
+           <p className="text-muted small mb-1">{data.condition}</p>
         </div>
-        <div className="h3 fw-bold">{data.temp}°C</div>
+        <div className="h3 fw-bold">{Math.round(data.temp)}°C</div>
         <div className="text-muted x-small">{data.localTime}</div>
       </div>
     </div>
   </div>
 );
+
+};
 
 export default WeatherCard;

@@ -7,39 +7,6 @@ import WeatherCard from "./WeatherCard";
 function ListGroup() {
   const [locationMap, setCities] = useState<Map<string, WeatherData>>(
     new Map([
-      [
-        "New York",
-        {
-          city: "New York",
-          country: "USA",
-          temp: 25,
-          condition: "Sunny",
-          localTime: "2024-06-01T12:00:00",
-          humidity: 60,
-        },
-      ],
-      [
-        "London",
-        {
-          city: "London",
-          country: "UK",
-          temp: 18,
-          condition: "Cloudy",
-          localTime: "2024-06-01T17:00:00",
-          humidity: 70,
-        },
-      ],
-      [
-        "Tokyo",
-        {
-          city: "Tokyo",
-          country: "Japan",
-          temp: 30,
-          condition: "Rainy",
-          localTime: "2024-06-01T21:00:00",
-          humidity: 80,
-        },
-      ],
     ]),
   );
   const [searchTerm, setSearchTerm] = useState("");
