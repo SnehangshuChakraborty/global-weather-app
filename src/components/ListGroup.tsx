@@ -40,40 +40,43 @@ function ListGroup() {
   }
 
   return (
-    <div className="container mt-5" style={{ maxWidth: '600px' }}>
-      <div className="card shadow-sm">
-        {/* Card Header */}
-        <div className="card-header bg-primary text-white py-3">
-          <h3 className="mb-0 h5">Global Weather Dashboard</h3>
-        </div>
-        {/* Card Body */}
-        <div className="card-body">
-          <div className="mb-4">
-            <label className="form-label fw-bold text-muted small uppercase">Search</label>
+    <div className="container-fluid min-vh-100 p-4 p-md-5">
+      {/* Top Navigation / Header */}
+      <div className="glass-panel p-4 mb-5 rounded-4 border-0">
+        <div className="row align-items-center">
+          <div className="col-12 col-lg-4 mb-3 mb-lg-0">
+            <h2 className="mb-0 fw-bold text-dark d-flex align-items-center">
+              <span className="me-2 text-shadow">🌍</span> Global Weather
+            </h2>
+          </div>
+          <div className="col-12 col-md-6 col-lg-4 mb-3 mb-md-0">
             <SearchBar value={searchTerm} onSearch={setSearchTerm} />
           </div>
-          {/* Replace the list-group with this grid structure */}
-          <div className="row g-3">
-            {searchResults.length > 0 ? (
-              searchResults.map(([city, weatherData]) => (
-                <WeatherCard
-                  key={city}
-                  city={city}
-                  data={weatherData}
-                  onDelete={() => removeCity(city)}
-                />
-              ))
-            ) : (
-              <div className="col-12 text-center text-muted py-5">No cities found matching your search.</div>
-            )}
-          </div>
-          {/* Divider */}
-          <hr className="my-4" />
-          <div className="bg-light p-3 rounded">
-            <h6 className="mb-3 fw-bold text-muted small uppercase">Add a New City</h6>
+          <div className="col-12 col-md-6 col-lg-4">
             <AddToMap onAdd={addCity} />
           </div>
         </div>
+      </div>
+
+      {/* Grid Layout for Weather Cards */}
+      <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4">
+        {searchResults.length > 0 ? (
+          searchResults.map(([city, weatherData]) => (
+            <WeatherCard
+              key={city}
+              city={city}
+              data={weatherData}
+              onDelete={() => removeCity(city)}
+            />
+          ))
+        ) : (
+          <div className="col-12 text-center py-5 w-100">
+            <div className="glass-panel p-5 rounded-4 d-inline-block text-muted">
+              <h4 className="mb-0 fw-bold">No cities found</h4>
+              <p className="mb-0 mt-2">Try adding a new city or adjust your search.</p>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

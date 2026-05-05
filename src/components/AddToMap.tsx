@@ -42,32 +42,37 @@ const AddToMap = ({ onAdd }: AddToMapProps) => {
   };
 
   return (
-    <div className="mb-3">
-      <input
-        type="text"
-        className="form-control mb-2"
-        placeholder="City"
-        value={city}
-        onChange={(e) => setCity(e.target.value)}
-        disabled={loading}
-      />
-      <input
-        type="text"
-        className="form-control mb-2"
-        placeholder="Country"
-        value={country}
-        onChange={(e) => setCountry(e.target.value)}
-        disabled={loading}
-      />
-      <button
-        className="btn btn-primary w-100"
-        onClick={handleSubmit}
-        disabled={loading}
-      >
-        {loading ? 'Adding City...' : 'Add City'}
-      </button>
+    <div className="position-relative w-100">
+      <div className="d-flex gap-2">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="City"
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+          disabled={loading}
+          style={{ borderRadius: '50px', paddingLeft: '20px' }}
+        />
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Country Code (e.g. US)"
+          value={country}
+          onChange={(e) => setCountry(e.target.value)}
+          disabled={loading}
+          style={{ borderRadius: '50px', maxWidth: '180px', paddingLeft: '20px' }}
+        />
+        <button
+          className="btn btn-dark text-nowrap px-4"
+          onClick={handleSubmit}
+          disabled={loading}
+          style={{ borderRadius: '50px' }}
+        >
+          {loading ? 'Adding...' : 'Add City'}
+        </button>
+      </div>
       {error && (
-        <div className="alert alert-danger mt-2 mb-0" role="alert">
+        <div className="position-absolute mt-2 w-100 text-center text-danger small bg-white bg-opacity-75 rounded p-1" style={{ zIndex: 100 }}>
           {error}
         </div>
       )}

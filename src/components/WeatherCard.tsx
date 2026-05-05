@@ -27,8 +27,8 @@ const WeatherCard = ({ city, data, onDelete }: WeatherCardProps) => {
   const iconUrl = `https://openweathermap.org/img/wn/${data.icon}@4x.png`;
 
   return (
-    <div className="col-12 col-md-6 col-lg-4 mb-4">
-      <div className={`card h-100 border-0 shadow-lg position-relative text-center p-3 transition-hover ${bgClass} ${isDarkBg ? 'text-white' : 'text-dark'}`}>
+    <div className="col">
+      <div className={`card h-100 border-0 shadow-lg glass-card rounded-4 position-relative text-center p-3 transition-hover ${bgClass} ${isDarkBg ? 'text-white text-shadow' : 'text-dark'}`}>
         <button
           onClick={onDelete}
           className={`btn-close position-absolute top-0 end-0 m-3 ${isDarkBg ? 'btn-close-white' : ''}`}
