@@ -53,15 +53,15 @@ const WeatherCard = ({ city, data, onDelete }: WeatherCardProps) => {
               alt={data.condition} 
               style={{ width: '100px', height: '100px', filter: 'drop-shadow(0px 4px 8px rgba(0,0,0,0.2))' }} 
             />
-            <p className="fw-bold small text-uppercase mb-1" style={{ letterSpacing: '1px' }}>
+            <p className="mb-1" style={{ opacity: 0.7, fontSize: '0.9rem' }}>
               {data.condition}
             </p>
           </div>
 
           <div className="display-4 fw-bold mt-2">{Math.round(data.temp)}°C</div>
           
-          <div className="mt-3 small" style={{ opacity: 0.6 }}>
-            Local Time: {data.localTime}
+          <div className="mt-3 small d-flex align-items-center justify-content-center gap-1" style={{ opacity: 0.7, fontFamily: 'monospace', fontSize: '1rem' }}>
+            <span>🕒</span> {data.localTime}
           </div>
         </div>
       </div>
