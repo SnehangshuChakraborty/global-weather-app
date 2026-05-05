@@ -16,7 +16,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ city, data, onDelete }) => {
   return (
     <div className="col">
       <div
-        className={`card h-100 border-0 shadow-lg glass-card rounded-4 position-relative text-center p-3 transition-hover ${isDark ? 'text-white text-shadow' : 'text-dark'}`}
+        className={`card h-100 shadow-lg glass-card rounded-4 position-relative text-center p-3 transition-hover ${isDark ? 'text-white text-shadow' : 'text-dark'}`}
         style={{ background: gradient }}
       >
         <button

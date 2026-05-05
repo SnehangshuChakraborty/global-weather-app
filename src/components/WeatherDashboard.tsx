@@ -27,7 +27,7 @@ const WeatherDashboard: React.FC = () => {
       </div>
 
       {/* Grid Layout for Weather Cards */}
-      <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4">
+      <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
         {filteredCities.length > 0 ? (
           filteredCities.map(([city, weatherData]) => (
             <WeatherCard
