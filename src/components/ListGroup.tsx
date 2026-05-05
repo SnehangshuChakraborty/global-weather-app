@@ -1,12 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AddToMap from './AddToMap';
 import SearchBar from './SearchBar';
 import { WeatherData } from '../types';
 import WeatherCard from './WeatherCard';
 
 function ListGroup() {
-  const [locationMap, setCities] = useState<Map<string, WeatherData>>(new Map());
+  const [locationMap, setCities] = useState<Map<string, WeatherData>>(() => {
+    const saved = localStorage.getItem('weatherTiles');
+    if (saved) {
+      try {
+        return new Map(JSON.parse(saved));
+      } catch (e) {
+        console.error("Failed to parse weather tiles from localStorage", e);
+      }
+    }
+    return new Map();
+  });
   const [searchTerm, setSearchTerm] = useState('');
+
+  useEffect(() => {
+    localStorage.setItem('weatherTiles', JSON.stringify(Array.from(locationMap.entries())));
+  }, [locationMap]);
 
   const removeCity = (cityName: string) => {
     setCities((prevMap) => {
