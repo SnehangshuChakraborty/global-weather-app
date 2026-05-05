@@ -38,7 +38,14 @@ const WeatherCard = ({ city, data, onDelete }: WeatherCardProps) => {
 
         <div className="card-body d-flex flex-column align-items-center justify-content-center">
           <h4 className="fw-bold mb-0">{city}</h4>
-          <p className="small mb-2" style={{ opacity: 0.8 }}>{data.country}</p>
+          <p className="small mb-2 d-flex align-items-center justify-content-center gap-2" style={{ opacity: 0.8 }}>
+            <img 
+              src={`https://flagcdn.com/w20/${data.country.toLowerCase()}.png`} 
+              alt={`${data.country} flag`} 
+              style={{ width: '20px', borderRadius: '2px' }} 
+            />
+            <span>{data.country}</span>
+          </p>
           
           <div className="py-2">
             <img 

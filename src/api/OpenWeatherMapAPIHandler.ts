@@ -15,13 +15,18 @@ export const callOpenWeatherMapApiHandler = async (
 
     const data = await response.json();
 
+    // Calculate the city's local time using the timezone offset from the API
+    const nowUtcMs = Date.now() + new Date().getTimezoneOffset() * 60000;
+    const cityLocalTime = new Date(nowUtcMs + data.timezone * 1000);
+    const localTimeStr = cityLocalTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
     return {
       city: data.name,
       country: data.sys.country,
       temp: data.main.temp,
       condition: data.weather[0].main,
       icon: data.weather[0].icon,
-      localTime: new Date().toLocaleTimeString(),
+      localTime: localTimeStr,
       humidity: data.main.humidity
     };
   } catch (error) {
