@@ -1,43 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import AddToMap from './AddToMap';
 import SearchBar from './SearchBar';
-import { WeatherData } from '../types';
 import WeatherCard from './WeatherCard';
+import { useWeather } from '../hooks/useWeather';
 
-function ListGroup() {
-  const [locationMap, setCities] = useState<Map<string, WeatherData>>(() => {
-    const saved = localStorage.getItem('weatherTiles');
-    if (saved) {
-      try {
-        return new Map(JSON.parse(saved));
-      } catch (e) {
-        console.error("Failed to parse weather tiles from localStorage", e);
-      }
-    }
-    return new Map();
-  });
-  const [searchTerm, setSearchTerm] = useState('');
-
-  useEffect(() => {
-    localStorage.setItem('weatherTiles', JSON.stringify(Array.from(locationMap.entries())));
-  }, [locationMap]);
-
-  const removeCity = (cityName: string) => {
-    setCities((prevMap) => {
-      const newMap = new Map(prevMap);
-      newMap.delete(cityName);
-      return newMap;
-    });
-  };
-
-  const searchResults = [...locationMap.entries()].filter(([city]) => {
-    const searchKeyword = searchTerm.toLowerCase();
-    return city.toLowerCase().includes(searchKeyword);
-  });
-
-  function addCity(city: string, weatherData: WeatherData): void {
-    setCities((prevMap) => new Map(prevMap).set(city, weatherData));
-  }
+const WeatherDashboard: React.FC = () => {
+  const { searchTerm, setSearchTerm, addCity, removeCity, filteredCities } = useWeather();
 
   return (
     <div className="container-fluid min-vh-100 p-4 p-md-5">
@@ -60,8 +28,8 @@ function ListGroup() {
 
       {/* Grid Layout for Weather Cards */}
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4">
-        {searchResults.length > 0 ? (
-          searchResults.map(([city, weatherData]) => (
+        {filteredCities.length > 0 ? (
+          filteredCities.map(([city, weatherData]) => (
             <WeatherCard
               key={city}
               city={city}
@@ -80,6 +48,6 @@ function ListGroup() {
       </div>
     </div>
   );
-}
+};
 
-export default ListGroup;
+export default WeatherDashboard;

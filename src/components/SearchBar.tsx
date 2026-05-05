@@ -1,9 +1,11 @@
+import React from 'react';
+
 interface SearchBarProps {
   value: string;
   onSearch: (query: string) => void;
 }
 
-const SearchBar = ({ value, onSearch }: SearchBarProps) => {
+const SearchBar: React.FC<SearchBarProps> = ({ value, onSearch }) => {
   return (
     <div className="position-relative w-100">
       <input

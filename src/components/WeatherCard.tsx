@@ -1,5 +1,7 @@
+import React from 'react';
 import '../App.css'; 
-import { WeatherData } from './WeatherData';
+import { WeatherData } from '../types';
+import { getDynamicGradient } from '../utils/weatherStyles';
 
 interface WeatherCardProps {
   city: string;
@@ -7,31 +9,19 @@ interface WeatherCardProps {
   onDelete: () => void;
 }
 
-const getBackgroundClass = (condition: string): string => {
-  const weatherMap: Record<string, string> = {
-    Clear: "bg-sunny",
-    Clouds: "bg-cloudy",
-    Rain: "bg-rainy",
-    Drizzle: "bg-rainy",
-    Thunderstorm: "bg-stormy",
-    Snow: "bg-snowy",
-    Mist: "bg-haze",
-    Haze: "bg-haze",
-  };
-  return weatherMap[condition] || "bg-default";
-};
-
-const WeatherCard = ({ city, data, onDelete }: WeatherCardProps) => {
-  const bgClass = getBackgroundClass(data.condition);
-  const isDarkBg = ["Rain", "Thunderstorm", "Mist", "Haze"].includes(data.condition);
+const WeatherCard: React.FC<WeatherCardProps> = ({ city, data, onDelete }) => {
+  const { gradient, isDark } = getDynamicGradient(data.condition, data.temp, data.icon);
   const iconUrl = `https://openweathermap.org/img/wn/${data.icon}@4x.png`;
 
   return (
     <div className="col">
-      <div className={`card h-100 border-0 shadow-lg glass-card rounded-4 position-relative text-center p-3 transition-hover ${bgClass} ${isDarkBg ? 'text-white text-shadow' : 'text-dark'}`}>
+      <div
+        className={`card h-100 border-0 shadow-lg glass-card rounded-4 position-relative text-center p-3 transition-hover ${isDark ? 'text-white text-shadow' : 'text-dark'}`}
+        style={{ background: gradient }}
+      >
         <button
           onClick={onDelete}
-          className={`btn-close position-absolute top-0 end-0 m-3 ${isDarkBg ? 'btn-close-white' : ''}`}
+          className={`btn-close position-absolute top-0 end-0 m-3 ${isDark ? 'btn-close-white' : ''}`}
           aria-label="Close"
           style={{ zIndex: 10 }}
         ></button>

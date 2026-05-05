@@ -1,11 +1,12 @@
-import ListGroup from './components/ListGroup';
+import React from 'react';
+import WeatherDashboard from './components/WeatherDashboard';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div>
-      <ListGroup />
+    <div className="app-container">
+      <WeatherDashboard />
     </div>
   );
-}
+};
 
 export default App;

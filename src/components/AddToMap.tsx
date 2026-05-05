@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { WeatherData } from '../types';
 import { callOpenWeatherMapApiHandler } from '../api/OpenWeatherMapAPIHandler';
 
@@ -6,7 +6,7 @@ interface AddToMapProps {
   onAdd: (city: string, data: WeatherData) => void;
 }
 
-const AddToMap = ({ onAdd }: AddToMapProps) => {
+const AddToMap: React.FC<AddToMapProps> = ({ onAdd }) => {
   const [city, setCity] = useState('');
   const [country, setCountry] = useState('');
   const [loading, setLoading] = useState(false);
